@@ -33,8 +33,8 @@ A robust RESTful API for employee management built with Spring Boot. Including c
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/employee-management.git
-cd backend-service
+git clone https://github.com/danieltiro/employee-backend.git
+cd employee-backend
 ```
 
 ### 2. Configure database in application.properties
