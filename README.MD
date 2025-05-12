@@ -39,6 +39,8 @@ cd employee-backend
 
 ### 2. Configure database in application.properties
 
+Open file and update the corresponding values in the Postgres database connection /src/main/resources/application.properties
+
 - spring.datasource.url=jdbc:postgresql://server_database:server_port_database/your_database_name
 - spring.datasource.username=your_username_database
 - spring.datasource.password=your_password_database
