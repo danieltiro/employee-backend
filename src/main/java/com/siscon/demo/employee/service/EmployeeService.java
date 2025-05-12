@@ -1,17 +1,19 @@
 package com.siscon.demo.employee.service;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.siscon.demo.employee.dto.EmployeeResultDTO;
 import com.siscon.demo.employee.entity.Employee;
 
 public interface EmployeeService {
-	Optional<Employee> findByDniIgnoreCase(String dni);
-    Optional<Employee> findByDniIgnoreCaseAndActive(String dni, boolean active);
-    Page<Employee> findByNameContainingIgnoreCaseAndActive(String name, boolean active, Pageable pageable);
-    Page<Employee> findByNameIgnoreCaseAndLastnameIgnoreCaseAndActive(String name, String lastname,
-			Boolean active, Pageable pageable);
     Employee save(Employee entity);
+    
+    Page<Employee> findAll(Pageable pageable);
+    void delete(UUID id);
+    Employee update(Employee entity);
+    List<EmployeeResultDTO> save(List<Employee> employees);
 }

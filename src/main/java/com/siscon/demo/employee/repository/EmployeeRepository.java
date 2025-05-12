@@ -19,4 +19,5 @@ public interface EmployeeRepository extends PagingAndSortingRepository<Employee,
     Page<Employee> findByNameContainingIgnoreCaseAndActive(String name, Boolean active, Pageable pageable);
     Page<Employee> findByNameIgnoreCaseAndLastnameIgnoreCaseAndActive(String name, String lastname,
 			Boolean active, Pageable pageable);
+    Optional<Employee> findByIdAndActiveTrue(UUID dni);
 }

@@ -2,6 +2,7 @@ package com.siscon.demo.employee.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.Objects;
 import java.util.UUID;
@@ -14,7 +15,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -55,9 +55,6 @@ public class Employee implements Serializable {
 	@Column(name = Constants.DB_PREFIX + "_name", nullable = false, length = 255)
 	private String name;
 	
-	@Transient
-	private Integer age;
-	
 	@NotBlank
 	@Size(max = 1)
 	@Column(name = Constants.DB_PREFIX + "_genre", nullable = false, length = 1)
@@ -80,19 +77,48 @@ public class Employee implements Serializable {
 	
 	@NotNull
 	@Column(name = Constants.DB_PREFIX + "_created_at", nullable = false)
-	private LocalDate createdAt = LocalDate.now();
+	private LocalDateTime createdAt = LocalDateTime.now();
 	
 	@Column(name = Constants.DB_PREFIX + "_deleted_at")
-	private LocalDate deletedAt;
+	private LocalDateTime deletedAt;
 	
 	@Column(name = Constants.DB_PREFIX + "_modified_at")
-	private LocalDate modifiedAt;
+	private LocalDateTime updatedAt;
 	
 	@NotNull
 	@Column(name = Constants.DB_PREFIX + "_active", nullable = false)
 	private boolean active = true;
 	
-	Integer getAge(){
+	public Employee() {
+		super();
+	}
+	
+	public Employee (String name, String middlename, String firstname, String lastname, String genre, LocalDate birthdate, String dni, String position, boolean active) {
+		this.name = name;
+		this.middlename = middlename;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.genre = genre;
+		this.birthdate = birthdate;
+		this.dni = dni;
+		this.position = position;
+		this.active = active;	
+	}
+	
+	public Employee (UUID id, String name, String middlename, String firstname, String lastname, String genre, LocalDate birthdate, String dni, String position, boolean active) {
+		this.id = id;
+		this.name = name;
+		this.middlename = middlename;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.genre = genre;
+		this.birthdate = birthdate;
+		this.dni = dni;
+		this.position = position;
+		this.active = active;
+	}
+	
+	public int getAge(){
 		Period period = Period.between(this.birthdate, LocalDate.now());
 		return period.getYears();
 	}
@@ -117,5 +143,9 @@ public class Employee implements Serializable {
 		return result;
 	}
 	
+	@Override
+    public String toString() {
+        return String.format("%s %s %s %s %s %i", this.name, this.lastname, this.dni, this.position, this.getAge());
+    }
 	
 }
