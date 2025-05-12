@@ -68,26 +68,26 @@ http://localhost:8081/swagger-ui/index.html
 
 Open a new terminal window and execute the following commands.
 
-- Create an employee
+- Create one o more employees
 
 ```bash
-curl --location 'http://localhost:8081/api/v1/employees' --header 'Content-Type: application/json' --data '{"name":"Daniel","firstname":"Tiro","active":true,"birthdate":"1984-01-03","genre":"M","position":"Java Programmer","dni":"TIBD841213Q10"}'
+curl --location 'http://localhost:8081/api/v1/employees/save-all' --header 'Content-Type: application/json' --data '[{"name":"Daniel","firstname":"Tiro","active":true,"birthdate":"2020-01-01","genre":"M","position":"Java Programmer","dni":"TIBD841213Q10"},{"name":"Juan","firstname":"Pérez","active":true,"birthdate":"1984-01-01","genre":"M","position":"Java Programmer","dni":"PEJJ841213Q00"}]'
 ```
 
-- Update an employee (Inserts a valid id)
+- Update an employee **(Inserts a valid id)**
 
 ```bash
 curl --location --request PUT 'http://localhost:8081/api/v1/employees' --header 'Content-Type: application/json' --data '{"id":"cfb36183-0744-492a-91d6-d8a4d60f5e79","firstname":"Tiros","lastname":"Bravos","middlename":"Joav","name":"Daniel","genre":"M","birthdate":"2000-01-01","dni":"TIBD84121310","position":"Java Programmer","active":true}'
-```
-
-- Delete employee (Insert a valid id)
-
-```bash
-curl --location --request DELETE 'http://localhost:8081/api/v1/employees/cfb36183-0744-492a-91d6-d8a4d60f5e79' --data ''
 ```
 
 - Get all employees
 
 ```bash
 curl --location 'http://localhost:8081/api/v1/employees/all?page=0&size=5&sort=createdAt%2Casc'
+```
+
+- Delete employee **(Inserts a valid id)**
+
+```bash
+curl --location --request DELETE 'http://localhost:8081/api/v1/employees/cfb36183-0744-492a-91d6-d8a4d60f5e79' --data ''
 ```
